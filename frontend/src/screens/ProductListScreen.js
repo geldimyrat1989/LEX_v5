@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
+import
+{
   createProduct,
   deleteProduct,
   listProducts,
 } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import {
+import
+{
   PRODUCT_CREATE_RESET,
   PRODUCT_DELETE_RESET,
 } from '../constants/productConstants';
 
-export default function ProductListScreen(props) {
+export default function ProductListScreen(props)
+{
+  const sellerMode = props.match.path.indexOf('/seller') >= 0;
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
@@ -31,24 +35,41 @@ export default function ProductListScreen(props) {
     success: successDelete,
   } = productDelete;
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (successCreate) {
+  useEffect(() =>
+  {
+    if (successCreate)
+    {
       dispatch({ type: PRODUCT_CREATE_RESET });
-      props.history.push(`/product/${createdProduct._id}/edit`);
+      props.history.push(`/product/${ createdProduct._id }/edit`);
     }
-    if (successDelete) {
+    if (successDelete)
+    {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
-    dispatch(listProducts());
-  }, [createdProduct, dispatch, props.history, successCreate, successDelete]);
+    dispatch(listProducts({ seller: sellerMode ? userInfo._id : '' }));
+  }, [
+    createdProduct,
+    dispatch,
+    props.history,
+    sellerMode,
+    successCreate,
+    successDelete,
+    userInfo._id,
+  ]);
 
-  const deleteHandler = (product) => {
-    if (window.confirm('Are you sure to delete?')) {
+  const deleteHandler = (product) =>
+  {
+    if (window.confirm('Are you sure to delete?'))
+    {
       dispatch(deleteProduct(product._id));
     }
   };
-  const createHandler = () => {
+  const createHandler = () =>
+  {
     dispatch(createProduct());
   };
   return (
@@ -94,7 +115,7 @@ export default function ProductListScreen(props) {
                     type="button"
                     className="small"
                     onClick={() =>
-                      props.history.push(`/product/${product._id}/edit`)
+                      props.history.push(`/product/${ product._id }/edit`)
                     }
                   >
                     Edit
