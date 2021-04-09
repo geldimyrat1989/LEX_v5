@@ -368,4 +368,8 @@ $ npm start
     2. add style
     3. handle submit form
     4. edit parse url to get query string
-    5. update product list api for search by name    
+    5. update product list api for search by name  
+ 54. Add Advanced Search Filter
+     1.  filter by category
+     2.  filter by price range
+     3.  filter by average rating      
