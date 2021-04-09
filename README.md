@@ -1,20 +1,14 @@
 # LaleliExpress ECommerce Website
 ![laleliexpress_v5](/template/images/laleliexpress_v5.jpg)
 
-## PLEASE DO NOT SEND PULL REQUEST
-## ALL PRs WILL BE REJECTED UNTIL DECEMBER 2020
-
-# React & Node Tutorial - Full ECommerce in 9 Hours [2021]
 
 Welcome to my React and Node tutorial to build a fully-functional e-commerce website exactly like amazon. Open your code editor and follow me for the next hours to build an e-commerce website using MERN stack (MongoDB, ExpressJS, React and Node.JS).
 
 ## Demo Website
 
 - 👉 Heroku : [https://laleliexpress_v5-final.herokuapp.com](https://laleliexpress_v5-final.herokuapp.com)
-- 👉 AWS : [https://laleliexpress_v5.webacademy.pro](https://laleliexpress_v5.webacademy.pro)
 
 
-## You Will Learn
 
 - HTML5 and CSS3: Semantic Elements, CSS Grid, Flexbox
 - React: Components, Props, Events, Hooks, Router, Axios
