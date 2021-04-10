@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/amazona', {
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/laleliexpress', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -28,7 +28,8 @@ app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });
 
-app.get('/api/config/google', (req, res) => {
+app.get('/api/config/google', (req, res) =>
+{
   res.send(process.env.GOOGLE_API_KEY || '');
 });
 

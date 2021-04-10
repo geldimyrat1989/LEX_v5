@@ -70,7 +70,7 @@ $ npm start
 ## Support
 
 - Q/A: https://webacademy.pro/laleliexpress_v5
-- Contact Instructor: [Basir](mailto:geldimyrat1989.jafarzadeh@gmail.com)
+- Contact Instructor: [Basir](mailto:geldimyrat1989.geldimyrat.alimov.1@gmail.com)
 
 ## Lessons
 
@@ -384,3 +384,8 @@ $ npm start
     7. install @react-google-maps/api
     8. use it in shipping screen
     9. apply map to the checkout screen     
+58. BugFix: Running Locally Without Issue
+     1.  add seller info to data.js
+     2.  seed product data with admin info as seller
+     3.  fix isSeller and isAdmin on update user
+     4.  remove auth from user details    
