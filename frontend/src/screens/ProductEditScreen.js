@@ -6,7 +6,8 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
-export default function ProductEditScreen(props) {
+export default function ProductEditScreen(props)
+{
   const productId = props.match.params.id;
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -27,14 +28,18 @@ export default function ProductEditScreen(props) {
   } = productUpdate;
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (successUpdate) {
+  useEffect(() =>
+  {
+    if (successUpdate)
+    {
       props.history.push('/productlist');
     }
-    if (!product || product._id !== productId || successUpdate) {
+    if (!product || product._id !== productId || successUpdate)
+    {
       dispatch({ type: PRODUCT_UPDATE_RESET });
       dispatch(detailsProduct(productId));
-    } else {
+    } else
+    {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
@@ -44,7 +49,8 @@ export default function ProductEditScreen(props) {
       setDescription(product.description);
     }
   }, [product, dispatch, productId, successUpdate, props.history]);
-  const submitHandler = (e) => {
+  const submitHandler = (e) =>
+  {
     e.preventDefault();
     // TODO: dispatch update product
     dispatch(
@@ -65,21 +71,24 @@ export default function ProductEditScreen(props) {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const uploadFileHandler = async (e) => {
+  const uploadFileHandler = async (e) =>
+  {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
     bodyFormData.append('image', file);
     setLoadingUpload(true);
-    try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+    try
+    {
+      const { data } = await Axios.post('/api/uploads/s3', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userInfo.token}`,
+          Authorization: `Bearer ${ userInfo.token }`,
         },
       });
       setImage(data);
       setLoadingUpload(false);
-    } catch (error) {
+    } catch (error)
+    {
       setErrorUpload(error.message);
       setLoadingUpload(false);
     }
