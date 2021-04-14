@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import {
-  ORDER_DELIVER_RESET,
-  ORDER_PAY_RESET,
-} from '../constants/orderConstants';
+import
+  {
+    ORDER_DELIVER_RESET,
+    ORDER_PAY_RESET,
+  } from '../constants/orderConstants';
 
-export default function OrderScreen(props) {
+export default function OrderScreen(props)
+{
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
@@ -32,14 +34,17 @@ export default function OrderScreen(props) {
     success: successDeliver,
   } = orderDeliver;
   const dispatch = useDispatch();
-  useEffect(() => {
-    const addPayPalScript = async () => {
+  useEffect(() =>
+  {
+    const addPayPalScript = async () =>
+    {
       const { data } = await Axios.get('/api/config/paypal');
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${ data }`;
       script.async = true;
-      script.onload = () => {
+      script.onload = () =>
+      {
         setSdkReady(true);
       };
       document.body.appendChild(script);
@@ -49,25 +54,32 @@ export default function OrderScreen(props) {
       successPay ||
       successDeliver ||
       (order && order._id !== orderId)
-    ) {
+    )
+    {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
-    } else {
-      if (!order.isPaid) {
-        if (!window.paypal) {
+    } else
+    {
+      if (!order.isPaid)
+      {
+        if (!window.paypal)
+        {
           addPayPalScript();
-        } else {
+        } else
+        {
           setSdkReady(true);
         }
       }
     }
   }, [dispatch, orderId, sdkReady, successPay, successDeliver, order]);
 
-  const successPaymentHandler = (paymentResult) => {
+  const successPaymentHandler = (paymentResult) =>
+  {
     dispatch(payOrder(order, paymentResult));
   };
-  const deliverHandler = () => {
+  const deliverHandler = () =>
+  {
     dispatch(deliverOrder(order._id));
   };
 
@@ -83,7 +95,7 @@ export default function OrderScreen(props) {
           <ul>
             <li>
               <div className="card card-body">
-                <h2>Shippring</h2>
+                <h2>Shipping</h2>
                 <p>
                   <strong>Name:</strong> {order.shippingAddress.fullName} <br />
                   <strong>Address: </strong> {order.shippingAddress.address},
@@ -130,7 +142,7 @@ export default function OrderScreen(props) {
                           ></img>
                         </div>
                         <div className="min-30">
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/product/${ item.product }`}>
                             {item.name}
                           </Link>
                         </div>
