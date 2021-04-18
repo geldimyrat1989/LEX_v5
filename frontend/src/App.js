@@ -28,6 +28,7 @@ import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import MapScreen from './screens/MapScreen';
+import DashboardScreen from './screens/DashboardScreen';
 
 function App()
 {
@@ -76,72 +77,74 @@ function App()
           </div>
           <div>
             <Link to="/cart">
-              Cart
+              <i className="fa fa-shopping-cart" />
+
               {cartItems.length > 0 && (
                 <span className="badge">{cartItems.length}</span>
               )}
             </Link>
-            {userInfo ? (
-              <div className="dropdown">
-                <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/profile">User Profile</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderhistory">Order History</Link>
-                  </li>
-                  <li>
-                    <Link to="#signout" onClick={signoutHandler}>
-                      Sign Out
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <Link to="/signin">Sign In</Link>
-            )}
-            {userInfo && userInfo.isSeller && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/productlist/seller">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist/seller">Orders</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Admin <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                  <li>
-                    <Link to="/productlist">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist">Orders</Link>
-                  </li>
-                  <li>
-                    <Link to="/userlist">Users</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
           </div>
         </header>
         <aside className={sidebarIsOpen ? 'open' : ''}>
+          {userInfo ? (
+            <div className="dropdown">
+              <Link to="#">
+                {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+              </Link>
+              <ul className="dropdown-content">
+                <li>
+                  <Link to="/profile">User Profile</Link>
+                </li>
+                <li>
+                  <Link to="/orderhistory">Order History</Link>
+                </li>
+                <li>
+                  <Link to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                    </Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link to="/signin">Sign In</Link>
+          )}
+          {userInfo && userInfo.isSeller && (
+            <div className="dropdown">
+              <Link to="#admin">
+                Seller <i className="fa fa-caret-down"></i>
+              </Link>
+              <ul className="dropdown-content">
+                <li>
+                  <Link to="/productlist/seller">Products</Link>
+                </li>
+                <li>
+                  <Link to="/orderlist/seller">Orders</Link>
+                </li>
+              </ul>
+            </div>
+          )}
+          {userInfo && userInfo.isAdmin && (
+            <div className="dropdown">
+              <Link to="#admin">
+                Admin <i className="fa fa-caret-down"></i>
+              </Link>
+              <ul className="dropdown-content">
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <Link to="/productlist">Products</Link>
+                </li>
+                <li>
+                  <Link to="/orderlist">Orders</Link>
+                </li>
+                <li>
+                  <Link to="/userlist">Users</Link>
+                </li>
+              </ul>
+            </div>
+          )}
+
           <ul className="categories">
             <li>
               <strong>Categories</strong>
@@ -229,6 +232,10 @@ function App()
           <AdminRoute
             path="/user/:id/edit"
             component={UserEditScreen}
+          ></AdminRoute>
+          <AdminRoute
+            path="/dashboard"
+            component={DashboardScreen}
           ></AdminRoute>
           <SellerRoute
             path="/productlist/seller"
