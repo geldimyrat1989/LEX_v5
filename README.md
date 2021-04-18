@@ -6,7 +6,7 @@ Welcome to my React and Node tutorial to build a fully-functional e-commerce web
 
 ## Demo Website
 
-- 👉 Heroku : [https://laleliexpress_v5-final.herokuapp.com](https://laleliexpress_v5-final.herokuapp.com)
+- 👉 Heroku : [https://laleliexpress-v5.herokuapp.com/](https://laleliexpress-v5.herokuapp.com/)
 
 
 
