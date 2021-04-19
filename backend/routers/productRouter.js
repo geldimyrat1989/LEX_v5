@@ -11,7 +11,7 @@ productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) =>
   {
-    const pageSize = 3;
+    const pageSize = 20;
     const page = Number(req.query.pageNumber) || 1;
 
     const name = req.query.name || '';
@@ -122,16 +122,16 @@ productRouter.post(
   expressAsyncHandler(async (req, res) =>
   {
     const product = new Product({
-      name: 'sample name ' + Date.now(),
+      name: ' ' + Date.now(),
       seller: req.user._id,
-      image: '/images/p1.jpg',
+      image: '',
       price: 0,
-      category: 'sample category',
-      brand: 'sample brand',
+      category: '',
+      brand: '',
       countInStock: 0,
       rating: 0,
       numReviews: 0,
-      description: 'sample description',
+      description: '',
     });
     const createdProduct = await product.save();
     res.send({ message: 'Product Created', product: createdProduct });

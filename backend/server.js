@@ -134,7 +134,7 @@ io.on('connection', (socket) =>
       {
         io.to(socket.id).emit('message', {
           name: 'Admin',
-          body: 'Sorry. I am not online right now',
+          body: 'You can call on Whatsup:+905050861449',
         });
       }
     }
