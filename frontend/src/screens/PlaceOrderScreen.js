@@ -7,9 +7,11 @@ import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
-export default function PlaceOrderScreen(props) {
+export default function PlaceOrderScreen(props)
+{
   const cart = useSelector((state) => state.cart);
-  if (!cart.paymentMethod) {
+  if (!cart.paymentMethod)
+  {
     props.history.push('/payment');
   }
   const orderCreate = useSelector((state) => state.orderCreate);
@@ -19,15 +21,18 @@ export default function PlaceOrderScreen(props) {
     cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
   );
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
-  cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+  cart.packagePrice = toPrice(4 * cart.itemsPrice);
+  cart.totalPrice = cart.packagePrice;
   const dispatch = useDispatch();
-  const placeOrderHandler = () => {
+  const placeOrderHandler = () =>
+  {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
-  useEffect(() => {
-    if (success) {
-      props.history.push(`/order/${order._id}`);
+  useEffect(() =>
+  {
+    if (success)
+    {
+      props.history.push(`/order/${ order._id }`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [dispatch, order, props.history, success]);
@@ -71,13 +76,13 @@ export default function PlaceOrderScreen(props) {
                           ></img>
                         </div>
                         <div className="min-30">
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/product/${ item.product }`}>
                             {item.name}
                           </Link>
                         </div>
 
                         <div>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty * 4} x ${item.price} = ${item.qty * item.price * 4}
                         </div>
                       </div>
                     </li>
@@ -102,13 +107,13 @@ export default function PlaceOrderScreen(props) {
               <li>
                 <div className="row">
                   <div>Shipping</div>
-                  <div>${cart.shippingPrice.toFixed(2)}</div>
+                  {/* <div>${cart.shippingPrice.toFixed(2)}</div> */}
                 </div>
               </li>
               <li>
                 <div className="row">
-                  <div>Tax</div>
-                  <div>${cart.taxPrice.toFixed(2)}</div>
+                  <div>Package price</div>
+                  <div>${cart.packagePrice.toFixed(2)}</div>
                 </div>
               </li>
               <li>

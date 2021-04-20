@@ -91,8 +91,12 @@ export default function CartScreen(props)
           <ul>
             <li>
               <h2>
-                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                Piece ({cartItems.reduce((a, c) => a + c.qty, 0)} item) : $
+                {cartItems.reduce((a, c) => a + c.price, 0)}
+              </h2>
+              <h2>
+                Subtotal package ({cartItems.reduce((a, c) => a + c.qty, 0)} packages) : $
+                {cartItems.reduce((a, c) => a + c.price * c.qty * 4, 0)}
               </h2>
             </li>
             <li>

@@ -7,10 +7,10 @@ import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import
-  {
-    ORDER_DELIVER_RESET,
-    ORDER_PAY_RESET,
-  } from '../constants/orderConstants';
+{
+  ORDER_DELIVER_RESET,
+  ORDER_PAY_RESET,
+} from '../constants/orderConstants';
 
 export default function OrderScreen(props)
 {
@@ -72,7 +72,12 @@ export default function OrderScreen(props)
         }
       }
     }
-  }, [dispatch, orderId, sdkReady, successPay, successDeliver, order]);
+  }, [dispatch,
+    orderId,
+    sdkReady,
+    successPay,
+    successDeliver,
+    order]);
 
   const successPaymentHandler = (paymentResult) =>
   {
@@ -148,7 +153,7 @@ export default function OrderScreen(props)
                         </div>
 
                         <div>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty * 4} x ${item.price} = ${item.qty * item.price * 4}
                         </div>
                       </div>
                     </li>
@@ -173,13 +178,13 @@ export default function OrderScreen(props)
               <li>
                 <div className="row">
                   <div>Shipping</div>
-                  <div>${order.shippingPrice.toFixed(2)}</div>
+                  {/* <div>${order.shippingPrice.toFixed(2)}</div> */}
                 </div>
               </li>
               <li>
                 <div className="row">
-                  <div>Tax</div>
-                  <div>${order.taxPrice.toFixed(2)}</div>
+                  <div>Package</div>
+                  <div>${order.packagePrice}</div>
                 </div>
               </li>
               <li>
