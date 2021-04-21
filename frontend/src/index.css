@@ -322,6 +322,8 @@ img.large {
 }
 .carousel .slide img {
   max-width: 30rem;
+  width: 250px;
+  height: 300px;
 }
 /* Search */
 .search button {
