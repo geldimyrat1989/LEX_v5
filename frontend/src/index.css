@@ -196,8 +196,9 @@ img.small {
   width: 100%;
 }
 img.medium {
-  max-width: 29rem;
-  width: 100%;
+  /* max-width: 29rem; */
+  width: 250px;
+  height: 250px;
 }
 img.large {
   width: 100%;
