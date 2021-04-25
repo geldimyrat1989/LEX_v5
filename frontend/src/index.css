@@ -321,9 +321,10 @@ img.large {
   margin: 0 0.2rem;
 }
 .carousel .slide img {
-  max-width: 30rem;
+  max-width: 25rem;
+  /* width: 100%; */
   width: 250px;
-  height: 300px;
+  height: 250px;
 }
 /* Search */
 .search button {

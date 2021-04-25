@@ -86,6 +86,10 @@ function App()
               )}
             </Link>
           </div>
+          {/* <li>
+            <Link to="/productlist">Products</Link>
+          </li> */}
+
         </header>
         <aside className={sidebarIsOpen ? 'open' : ''}>
           {userInfo ? (
