@@ -59,6 +59,7 @@ productRouter.get(
       ...ratingFilter,
     })
       .populate('seller', 'seller.name seller.logo')
+      .sort({ createdAt: -1 })
       .skip(pageSize * (page - 1))
       .limit(pageSize);
     res.send({ products, page, pages: Math.ceil(count / pageSize) });
